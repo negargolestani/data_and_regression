@@ -18,11 +18,6 @@ def get_data(setting, target, features='vind'):
     return train_data, test_data
 
 
-# -----------------------------------------------------
-# Process Data
-# -----------------------------------------------------
-def data_processing(data): 
-    return data.segment(win_size=20, step=1)
 
 
 # -----------------------------------------------------
@@ -44,6 +39,25 @@ def load_data(dataset_name, features, target):
 
 
 
+
+# -----------------------------------------------------
+# Process Data
+# -----------------------------------------------------
+def data_processing(data): 
+    return data.segment(win_size=20, step=1)
+
+
+
+
+# -----------------------------------------------------
+# MAPE
+# -----------------------------------------------------
+def mean_absolute_percentage_error(y_true, y_pred): 
+    return np.mean(np.abs((y_true - y_pred) / y_true))
+
+
+
+
 # -----------------------------------------------------
 # Predict
 # -----------------------------------------------------
@@ -58,16 +72,6 @@ def predict_data(model, test_data):
         # y_pred = .75*y_pred + .25*y_true ####     
         predictions.append( pd.DataFrame(dict(y_true=y_true, y_pred=y_pred)) )
     return predictions              
-
-
-
-
-# -----------------------------------------------------
-# MAPE
-# -----------------------------------------------------
-def mean_absolute_percentage_error(y_true, y_pred): 
-    return np.mean(np.abs((y_true - y_pred) / y_true))
-
 
 
 
