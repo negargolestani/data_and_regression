@@ -69,7 +69,6 @@ def predict_data(model, test_data):
         y_pred = prediction.Label.to_numpy()   
         y_pred = signal.savgol_filter(y_pred, window_length=5, polyorder=1, axis=0)  
         y_pred = (y_pred - np.nanmean(y_pred))/np.nanstd(y_pred) *np.nanstd(y_true) + np.nanmean(y_true)    
-        # y_pred = .75*y_pred + .25*y_true ####     
         predictions.append( pd.DataFrame(dict(y_true=y_true, y_pred=y_pred)) )
     return predictions              
 
